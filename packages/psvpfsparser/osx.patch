@@ -1,0 +1,37 @@
+diff --git a/cmake/CMakeLists.txt b/cmake/CMakeLists.txt
+index b0181b3..77018cd 100644
+--- a/cmake/CMakeLists.txt
++++ b/cmake/CMakeLists.txt
+@@ -3,10 +3,10 @@ cmake_minimum_required (VERSION 3.6.0)
+ set (PROJECT psvpfstools)
+ project (${PROJECT})
+ 
+-if (MSVC)
++if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    add_definitions (/W3)
+    add_definitions(-D_SCL_SECURE_NO_WARNINGS)
+-elseif (CMAKE_COMPILER_IS_GNUCXX)
++elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wno-unknown-pragmas -fPIC")
+ else()
+    message (FATAL_ERROR "Unknown compiler")
+diff --git a/psvpfsparser/FilesDbParser.cpp b/psvpfsparser/FilesDbParser.cpp
+index ab369fa..f45c745 100644
+--- a/psvpfsparser/FilesDbParser.cpp
++++ b/psvpfsparser/FilesDbParser.cpp
+@@ -451,7 +451,7 @@ bool constructFileMatrix(std::vector<sce_ng_pfs_block_t>& blocks, std::map<std::
+             else
+             {
+                //empty files should be allowed!
+-               std::cout << "[EMPTY] File " << fileName << " index " << child << " of type " << std::hex << block.m_infos[i].header.type << std::endl;
++               //std::cout << "[EMPTY] File " << fileName << " index " << child << " of type " << std::hex << block.m_infos[i].header.type << std::endl;
+             }
+          }
+          else
+@@ -945,4 +945,4 @@ int parseFilesDb(std::shared_ptr<IF00DKeyEncryptor> iF00D, unsigned char* klicen
+    }
+ 
+    return 0;
+-}
+\ No newline at end of file
++}
