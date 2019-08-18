@@ -1,0 +1,35 @@
+diff --git a/sign_np.c b/sign_np.c
+index abf95d5..74b61da 100644
+--- a/sign_np.c
++++ b/sign_np.c
+@@ -1,6 +1,11 @@
+ // Copyright (C) 2015       Hykem <hykem@hotmail.com>
+ // Licensed under the terms of the GNU GPL, version 3
+ // http://www.gnu.org/licenses/gpl-3.0.txt
++//
++#ifdef __APPLE__
++#  define ftello64 ftello
++#  define fseeko64 fseeko
++#endif
+ 
+ #include "sign_np.h"
+ 
+diff --git a/tlzrc.h b/tlzrc.h
+index 44e32ea..1d65d10 100644
+--- a/tlzrc.h
++++ b/tlzrc.h
+@@ -5,7 +5,6 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
+-#include <malloc.h>
+ 
+ #include "utils.h"
+ 
+@@ -31,4 +30,4 @@ typedef struct {
+ } LZRC_DECODE;
+ 
+ int lzrc_compress(void *out, int out_len, void *in, int in_len);
+-int lzrc_decompress(void *out, int out_len, void *in, int in_len);
+\ No newline at end of file
++int lzrc_decompress(void *out, int out_len, void *in, int in_len);

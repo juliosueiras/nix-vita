@@ -1,0 +1,22 @@
+diff --git a/Makefile b/Makefile
+index 9a02114..3f4a40c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@ TARGET = chovy-gen
+ OBJS = main.o 
+ 
+ 
+-LIBS = -lssl -lcrypto   -lole32 -lgdi32 -lws2_32
++LIBS = -lssl -lcrypto 
+ 
+ 
+ CFLAGS = -s -static -Wall -Wextra -std=c99 
+@@ -10,7 +10,7 @@ all: $(TARGET)
+ 
+ $(TARGET): $(OBJS)
+ 	@echo "Creating binary $(TARGET)"
+-	$(CXX) $(OBJS) -o $@ $(LIBS)  -static -static-libgcc
++	$(CXX) $(OBJS) -o $@ $(LIBS)
+ 
+ %.o: %.cpp
+ 	@echo "Compiling $^"

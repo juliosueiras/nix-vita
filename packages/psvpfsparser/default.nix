@@ -22,7 +22,7 @@ in stdenv.mkDerivation {
     curl
     boostSharedStatic
     cmake
-  ] ++ stdenv.lib.optional stdenv.isDarwin clang;
+  ];
 
   meta = with lib; {
     description = "Tools for decrypting PS Vita PFS filesystem";
