@@ -1,0 +1,44 @@
+diff --git a/common/utils.c b/common/utils.c
+index 59494b4..644f334 100644
+--- a/common/utils.c
++++ b/common/utils.c
+@@ -6,7 +6,7 @@
+ #include <stdlib.h>
+ #include <dirent.h>
+ #include <sys/stat.h>
+-#include <io.h>
++#include <sys/uio.h>
+ 
+ 
+ 
+@@ -233,8 +233,8 @@ void mkdir_p(char *dname)
+ 			break;
+ 
+ 		*p = 0;
+-		//mkdir(name, 0777);
+-		mkdir(name);
++		mkdir(name, 0777);
++		//mkdir(name);
+ 		*p = '/';
+ 		cp = p+1;
+ 	};
+diff --git a/kirk/Makefile b/kirk/Makefile
+index 48d5c06..1d3bb3c 100644
+--- a/kirk/Makefile
++++ b/kirk/Makefile
+@@ -7,13 +7,13 @@ else
+ CFLAGS+=-O2
+ endif
+ 
+-TARGET = libkirk.a
++TARGET = libkirk.so
+ OBJS = kirk_engine.o crypto.o amctrl.o bn.o ec.o ../common/utils.o
+ 
+ all: $(TARGET)
+ 
+ $(TARGET): $(OBJS)
+-	$(AR) rcs $@ $(OBJS)
++	$(CC) -o $@ -shared $(OBJS) 
+ 
+ clean:
+ 	$(RM) *.o $(TARGET)

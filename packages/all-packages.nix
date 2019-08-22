@@ -7,4 +7,5 @@ with pkgs;
   psvimgtools = callPackage ./psvimgtools/default.nix {};
   sign_np = callPackage ./sign_np/default.nix {};
   chovy-gen = callPackage ./chovy-gen/default.nix {};
+  libkirk = callPackage ./kirk_engine/default.nix {};
 }
