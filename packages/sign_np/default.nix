@@ -1,5 +1,4 @@
-#{ stdenv, lib, fetchFromGitHub, cmake, openssl_1_1, ... }:
-with import <nixpkgs> {};
+{ stdenv, lib, fetchFromGitHub, gcc, zlib, ... }:
 
 stdenv.mkDerivation {
   name = "sign_np";
